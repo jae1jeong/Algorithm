@@ -1,0 +1,1 @@
+def solution(string):return int(string)
