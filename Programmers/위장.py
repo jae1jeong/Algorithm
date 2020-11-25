@@ -1,17 +1,16 @@
 def solution(clothes):
-    ans=()
+    ans={}
     
-    answer = 0 +len(clothes)
-    for i in range(len(clothes)):
-        lst = (clothes[i])
-        for j in range(len(clothes)):
-            if i != j:
-                if clothes[i][1] != clothes[j][1]:
-                    lst.add(clothes[j])
-                    
-                    if lst not in ans:
-                        ans.add(lst)
-    print(ans)
+    for i in clothes:
+        if i[1] in ans:
+            ans[i[1]] += 1
+        else:
+            ans[i[1]] = 1
+    cnt = 1
+    for i in ans.values():
+        cnt *= (i+1)
+    return cnt -1 # 다 입지 않았을 때 수를 뺴줘야함
+
 
 
 clothes = [["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]
