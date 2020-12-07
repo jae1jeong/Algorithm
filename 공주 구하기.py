@@ -27,6 +27,4 @@ while arrays:
         print(arrays[0])
         arrays.pop()
 
-        
-        
     

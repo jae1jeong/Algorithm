@@ -13,7 +13,7 @@ def solution(genres, plays):
     
     sorted_genres = sorted(albumCounts.items(),key=lambda x: x[1],reverse=True) # 재생한 수가 많으면 앞으로 정렬
     
-    for g in sorted_genres:
+    for g in sorted_genres:qqqq
         sorted_g = sorted(albums[g[0]],key=lambda x :x[1],reverse=True)
         print(sorted_g)
         answer.append(sorted_g[0][0])
