@@ -31,3 +31,5 @@ def get_max_value(data_list, capacity):
 
 data_list = [(10, 10), (15, 12), (20, 10), (25, 8), (30, 5)]
 print(get_max_value(data_list, 30))
+
+
