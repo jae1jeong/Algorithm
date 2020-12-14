@@ -1,4 +1,4 @@
-import sys
+# import sys
 
 
 
@@ -25,4 +25,24 @@ for coin in cash:
         m -= cnt * coin
 
 
-print(count)
+# print(count)
+# import sys
+# sys.stdin = open('input.txt','r')
+
+# n,k = map(int,input().split())
+# coins,cnt = [],0
+# for _ in range(n):
+#     coins.append(int(input())) 
+
+# for idx in range(len(coins)-1,-1,-1):
+#     cnt += k // coins[idx]
+#     k =  k % coins[idx]
+# print(cnt) 
+
+
+
+
+
+
+
+
