@@ -1,23 +1,18 @@
 import sys
-#sys.stdin = open('input.txt','r')
+sys.stdin = open('input.txt','r')
 
-def dfs(L,res):
+def dfs(L,_sum):
     global cnt
-    if L == n:
-        temp = 0
-        for v in visit:
-            if v:
-                res //= coins[v-1] + (res % coins[v-1])
-                temp +=1
-                if temp > cnt:
-                    return
-        cnt = min(temp,cnt)
+    if L > cnt:
+        return
+    if _sum > money:
+        return 
+    if _sum == money:
+        cnt = min(cnt,L)
         return
     else:
-        for i in range(1,len(visit)):
-            visit[L] = i
-            dfs(L+1,res)
-            visit[L] = 0
+        for i in range(len(coins)):
+            dfs(L+1,_sum+coins[i])
 
 
 
@@ -25,7 +20,7 @@ def dfs(L,res):
 n = int(input())
 coins = list(map(int,input().split()))
 money = int(input())
-visit = [0] * (n+1)
+coins.sort(reverse=True)
 cnt = 1e9
-dfs(0,money)
+dfs(0,0)
 print(cnt)
