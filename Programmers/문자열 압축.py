@@ -1,15 +1,29 @@
+import sys
+# sys.stdin = open('.\input.txt','r')
 
+# s = input()
+s = "aaaabbababb"
 
-def match(n,string):
-    repeat = 1
-    temp = ""
-    n = n+ 1
-    while string[:n] == string[n-1:2*n] and n < len(string)-1:
-        repeat += 1     
-        temp = f'{repeat}{string[:n]}'
-        n += n
-        
-    print(temp)
+def solution(s):
+    ans = len(s)
     
+    for step in range(1,len(s)//2+1):
+        prev = s[:step]
+        compression = ""
+        cnt = 1
+        for j in range(step,len(s),step):
+            if prev == s[j:j+step]:
+                cnt += 1
+            else:
+                compression += str(cnt) + prev if cnt > 1 else prev
+                cnt = 1
+                prev = s[j:j+step]
+            print(j)
+        print(f'{cnt},{prev},{compression}')
+        compression += str(cnt) + prev if cnt > 1 else prev
+        ans = min(ans,len(compression))
+    return ans
 
-match(1,"aabbaccc")             
+print(solution(s))
+
+                
