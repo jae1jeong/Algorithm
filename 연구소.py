@@ -1,31 +1,68 @@
 import sys
 sys.stdin = open('input.txt','r')
 
-beWall = []
-n,m = map(int,input().split())
-factory = [[0] * m for _ in range(n)]
-
-for i in range(n):
-    temp = list(map(int,input().split()))
-    for j in range(m):
-        if temp[j] == 2:
-            beWall.append([i,j])
-        factory[i][j] = temp[j]
 
 def spreadVirus(x,y):
-    dx,dy = [1,0,-1,0],[0,1,0,-1]
-    for i in range(4):
-        if x + dx[i] >= 0 and x+dx[i] < n and y+dy[i]>=0 and y + dy[i]<m:
-            spreadVirus(x+dx[i],y+dy[i])
-            factory[x+dx[i]][y+dy[i]] = 2
+    
+    if x < 0 or x >= n or y < 0 or y>= m or factory[x][y] != 0:
+        return
+
+    else:
+        factory[x][y] = 2
+        
+def countZeroSpace(matrix):
+    cnt = 0
+    for i in range(n):
+        for j in range(m):
+            if matrix[i][j] == 0:
+                cnt += 1
+    return cnt
+
+def putWall(v):
+    if v == 3:
+        for i in range(len(chk_lst)):
+            if chk_lst:
+                print(beWall[i])
+        print()
+        return
+    else:
+        for i in range(len(chk_lst)):
+            chk_lst[i] = 1
+            putWall(v+1)
+            chk_lst[i] = 0
+        
 
 
-for i in range(n):
-    for j in range(m):
-        if factory[i][j] == 2:
-            spreadVirus(i,j)
 
-for i in range(n):
-    for j in range(m):
-        print(factory[i][j],end=' ')
-    print()
+if __name__ == '__main__':
+    
+    beWall = []
+    n,m = map(int,input().split())
+    factory = []
+
+
+    # 동서남북
+    dx,dy = [1,-1,0,0],[0,0,1,-1]
+
+    for i in range(n):
+        temp = list(map(int,input().split()))
+        factory.append(temp)
+
+    virus = []
+    for i in range(n):
+        for j in range(m):
+            if factory[i][j] == 0:
+                beWall.append([i,j])
+            elif factory[i][j] == 2:
+                for k in range(4):
+                    _x = dx[k] + i
+                    _y = dy[k] + j
+                    spreadVirus(_x,_y) 
+    chk_lst = [0] * len(beWall)
+    putWall(0)
+    for i in range(n):
+        for j in range(m):
+            print(factory[i][j],end=" ")
+        print()
+    
+        
