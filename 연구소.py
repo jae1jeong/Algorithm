@@ -60,9 +60,6 @@ if __name__ == '__main__':
                     spreadVirus(_x,_y) 
     chk_lst = [0] * len(beWall)
     putWall(0)
-    for i in range(n):
-        for j in range(m):
-            print(factory[i][j],end=" ")
-        print()
+
     
         
