@@ -10,7 +10,6 @@ def solution(cacheSize, cities):
             ans += 1                
             cache.remove(city)
             cache.append(city)
-
         else:
             ans += 5
             if cacheSize > len(cache):
