@@ -3,23 +3,25 @@ from collections import defaultdict
 def solution(orders, course):
     answer = []
     temp = set()
-    menu_count = defaultdict(int)
+    menu_count = {}
+    for cor in course:
+        menu_count[cor] = defaultdict(int)
     for order in orders:
-        for i in range(2,len(order)+1):
-            for x in combinations(list(order),i):
-                for j in range(len(orders)):
-                    menus = set(orders[j])
-                    if len(x)>len(menus):
-                        continue
-                    intersectionMenu = menus.intersection(sorted(x))
-                    if len(intersectionMenu) >= 2:
-                        menu_count[''.join(sorted(intersectionMenu))] += 1
-    
-            print(menu_count)
-            menu_count = defaultdict(int)
+        for i in course:
+            for x in combinations(order, i):
+                menu = "".join(sorted(x))
+                menu_count[i][menu] += 1
 
-    
-    return answer
+            
+    for i in course:
+        if len(menu_count[i]) == 0:
+            continue
+        max_value = max(menu_count[i].values())
+        for menu in menu_count[i].keys():
+            if menu_count[i][menu] >= 2 and menu_count[i][menu] == max_value:
+                answer.append(menu)
+    print(answer)            
+    return sorted(answer)
 
 
 
