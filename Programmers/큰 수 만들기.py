@@ -14,3 +14,4 @@ def solution(number, k):
     
     
     
+solution("1231234",3)
